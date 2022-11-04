@@ -198,10 +198,32 @@ const MediaLinks = () => {
   );
 };
 
+const HelpfulLinks = () => {
+  return (
+    <ul className="mt-12 flex justify-center gap-6 md:gap-8">
+      {helpfulLinks.map((item) => {
+        return (
+          <li key={item.path}>
+            <Link
+              to={item.path}
+              rel="noreferrer"
+              target="_blank"
+              className="text-gray-700 transition hover:text-gray-700/75"
+            >
+              <span className="sr-only">{item.label}</span>
+              {item.icon}
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
 // Footer links data
 const footerLinks = [
   { path: "/", label: "Home" },
-  { path: "/products", label: "Shop" },
+  { path: "/products", label: "Products" },
   { path: "/about", label: "About" },
   { path: "/contact", label: "Contact" },
   { path: "/blogs", label: "Blogs" },
@@ -269,7 +291,7 @@ const Footer = () => {
             <div>
               <p className="font-medium">Helpful Links</p>
               <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-                {/* <HelpfulLinks /> */}
+                <HelpfulLinks />
               </nav>
             </div>
             <div>

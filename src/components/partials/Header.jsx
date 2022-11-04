@@ -3,7 +3,7 @@ import logo_img from '../../assets/images/logo.png';
 
 const headerLinks = [
   { path: "/", label: "Home" },
-  { path: "/products", label: "Shop" },
+  { path: "/products", label: "Products" },
   { path: "/about", label: "About" },
   { path: "/contact", label: "Contact" },
   { path: "/blogs", label: "Blogs" },

@@ -8,7 +8,7 @@ const register = () => {
         <div className="mx-auto">
             <main
             aria-label="Main"
-            className="px-8 py-8 max-w-2xl sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 
+            className="px-8 py-8 max-w-lg sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 
                 xl:col-span-6 border rounded-2xl"
             >
             <h1 className="text-center text-4xl text-teal-600 font-bold">
@@ -16,40 +16,25 @@ const register = () => {
             </h1>
             <div className="max-w-xl lg:max-w-3xl">
                 <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6 flex">
                     <label
-                    htmlFor="FirstName"
-                    className="block text-sm font-medium text-gray-700"
+                    htmlFor="FullName"
+                    className="block w-32 text-sm font-medium text-gray-700"
                     >
-                    First Name
+                    Full Name
                     </label>
                     <input
                     type="text"
-                    id="FirstName"
-                    name="first_name"
+                    id="FullName"
+                    name="full_name"
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm
                     text-gray-700 shadow-sm"
                     />
                 </div>
-                <div className="col-span-6 sm:col-span-3">
-                    <label
-                    htmlFor="LastName"
-                    className="block text-sm font-medium text-gray-700"
-                    >
-                    Last Name
-                    </label>
-                    <input
-                    type="text"
-                    id="LastName"
-                    name="last_name"
-                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm
-                    text-gray-700 shadow-sm"
-                    />
-                </div>
-                <div className="col-span-6">
+                <div className="col-span-6 flex">
                     <label
                     htmlFor="Email"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block w-32 text-sm font-medium text-gray-700"
                     >
                     Email
                     </label>
@@ -61,10 +46,10 @@ const register = () => {
                     text-gray-700 shadow-sm"
                     />
                 </div>
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6 flex">
                     <label
                     htmlFor="Password"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block w-32 text-sm font-medium text-gray-700"
                     >
                     Password
                     </label>
@@ -76,10 +61,10 @@ const register = () => {
                     text-gray-700 shadow-sm"
                     />
                 </div>
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6 flex">
                     <label
                     htmlFor="PasswordConfirmation"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block w-32 text-sm font-medium text-gray-700"
                     >
                     Password Confirmation
                     </label>
