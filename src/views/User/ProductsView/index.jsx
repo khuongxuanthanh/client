@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Api from "../../Api/products";
 // import Icon from '../icon';
 
 const Sorted = () => {
@@ -146,7 +147,7 @@ const Sorted = () => {
             <button
               name="commit"
               type="button"
-              className="rounded bg-green-600 px-5 py-3 text-xs font-medium text-white"
+              className="rounded bg-teal-400 px-5 py-3 text-xs font-medium text-white"
             >
               Apply Filters
             </button>
@@ -220,17 +221,17 @@ const ProductGrid = ({ products }) => {
               className="h-56 w-full object-cover lg:h-72 px-2"
             />
             <div className="p-6">
-              <span className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium">
+              <span className="inline-block bg-teal-400 px-3 py-1 text-xs font-medium">
                 New
               </span>
-              <h5 className="mt-4 text-lg font-bold">{product.title}</h5>
+              <h5 className="mt-4 text-lg font-bold normal-case">{product.title}</h5>
               <p className="mt-2 text-sm font-medium text-gray-600">
                 ${product.price}
               </p>
               <button
                 name="add"
                 type="button"
-                className="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
+                className="mt-4 flex w-full items-center justify-center rounded-sm bg-teal-400 px-8 py-4"
               >
                 <span className="text-sm font-medium">Add to Cart</span>
                 {/* <Icon.cartIcon/> */}
@@ -250,11 +251,11 @@ const ProductsView = () => {
     axios
       .get("http://localhost:3000/api/products")
       .then((res) => {
-        console.log(res.data.products);
         setProducts(res.data.products);
       })
       .catch((error) => console.log(error));
   }, []);
+  // <Api.ApiProduct/>
 
   return (
     <section>

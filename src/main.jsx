@@ -4,14 +4,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Views
 import HomeView from "./views/HomeView";
-import ProductDetailView from "./views/ProductDetailView";
-import ProductsView from "./views/ProductsView";
-import Login from "./views/Login/login";
-import Register from "./views/Login/register";
+import ProductDetailView from "./views/User/ProductDetailView";
+import ProductsView from "./views/User/ProductsView";
+import Login from "./views/User/Login/login";
+import Register from "./views/User/Login/register";
 import AddProduct from "./views/Admin/Products/addProduct";
 
 // Faqs
-import Faqs from "./views/Faqs/Faqs";
+import Faqs from "./views/User/Faqs/Faqs";
 
 // Tailwindcss base
 import "./index.css";

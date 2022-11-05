@@ -1,3 +1,6 @@
+import React from 'react'
+
+
 new Swiper(".swiper", {
   loop: true,
   slidesPerView: 1,
@@ -15,4 +18,5 @@ new Swiper(".swiper", {
       slidesPerView: 3,
     },
   },
-});
+})
+

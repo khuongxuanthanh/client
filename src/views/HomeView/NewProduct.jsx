@@ -43,7 +43,6 @@ const NewProduct = () => {
     axios
       .get("http://localhost:3000/api/products")
       .then((res) => {
-        console.log(res.data.products);
         setProducts(res.data.products);
       })
       .catch((error) => console.log(error));

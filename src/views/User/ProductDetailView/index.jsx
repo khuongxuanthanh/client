@@ -38,6 +38,22 @@ const Rating = ({ rating = 4 }) => {
   );
 };
 
+const ThumbImg = () => {
+  return (
+    <div className="-ml-0.5 flex">
+      {product.thumball.map(() => {
+        return (
+          <img
+                alt={product.title}
+                src={product.thumball.index}
+                className="aspect-square w-full rounded-xl object-cover"
+              />
+        );
+      })}
+    </div>
+  );
+};
+
 const ProductDetailView = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
@@ -57,29 +73,30 @@ const ProductDetailView = () => {
             <img
               alt="Les Paul"
               src={product.thumbnail}
-              className="aspect-square w-full rounded-xl object-cover"
+              className="aspect-square w-full shadow-md rounded-xl object-cover"
             />
             <div className="grid grid-cols-4 gap-4 lg:mt-4">
-              <img
+            <img
                 alt={product.title}
                 src={product.thumbnail}
-                className="aspect-square w-full rounded-xl object-cover"
+                className="aspect-square w-full shadow-md rounded-xl object-cover"
               />
               <img
                 alt={product.title}
                 src={product.thumbnail}
-                className="aspect-square w-full rounded-xl object-cover"
+                className="aspect-square w-full shadow-md rounded-xl object-cover"
               />
               <img
                 alt={product.title}
                 src={product.thumbnail}
-                className="aspect-square w-full rounded-xl object-cover"
+                className="aspect-square w-full shadow-md rounded-xl object-cover"
               />
               <img
                 alt={product.title}
                 src={product.thumbnail}
-                className="aspect-square w-full rounded-xl object-cover"
+                className="aspect-square w-full shadow-md rounded-xl object-cover"
               />
+              {/* <ThumbImg /> */}
             </div>
           </div>
           <div className="sticky top-0">

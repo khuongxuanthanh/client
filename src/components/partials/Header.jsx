@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import logo_img from '../../assets/images/logo.png';
+import {
+  AiOutlineMenu,
+} from 'react-icons/ai';
 
 const headerLinks = [
   { path: "/", label: "Home" },
@@ -12,11 +15,47 @@ const headerLinks = [
 
 const Logo = () => {
   return (
-    <Link className="block text-teal-600" to="/">
+    <Link className="block text-teal-400" to="/">
       <span className="sr-only">Home</span>
       <img className="h-16 w-48" src={logo_img} alt="Logo" />
     </Link>
   );
+};
+
+const Login = () => {
+  if(localStorage.getItem("accessToken"))
+    return(
+      <div className="sm:flex sm:gap-4">
+        <Link
+          className="rounded-md border-teal-400 hover:bg-transparent hover:text-teal-400 bg-teal-400 px-5 py-2.5 text-sm font-medium text-white shadow"
+          to='/logout'
+        >
+          Logout
+        </Link>
+        <div className="hidden sm:flex">
+          Hello: {userName}
+        </div>
+      </div>
+    )
+  else
+      return(
+        <div className="sm:flex sm:gap-4">
+        <Link
+          className="rounded-md border-teal-400 hover:bg-transparent hover:text-teal-400 bg-teal-400 px-5 py-2.5 text-sm font-medium text-white shadow"
+          to="/login"
+        >
+          Login
+        </Link>
+        <div className="hidden sm:flex">
+          <Link
+            className="rounded-md hover:bg-teal-400 hover:text-gray-100 bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+            to="/register"
+          >
+            Register
+          </Link>
+        </div>
+        </div>
+      )
 };
 
 const NavLinks = () => {
@@ -26,9 +65,9 @@ const NavLinks = () => {
         Header navigation
       </h2>
       <ul className="flex items-center gap-6 text-sm">
-        {headerLinks.map((item) => {
+        {headerLinks.map((item,index) => {
           return (
-            <li key={item.path}>
+            <li key={index}>
               <Link
                 className="text-gray-500 transition hover:text-gray-500/75"
                 to={item.path}
@@ -46,38 +85,11 @@ const NavLinks = () => {
 const AuthButtons = () => {
   return (
     <>
-      <div className="sm:flex sm:gap-4">
-        <a
-          className="rounded-md border-teal-600 hover:bg-transparent hover:text-teal-600 bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-          href="/login"
-        >
-          Login
-        </a>
-        <div className="hidden sm:flex">
-          <a
-            className="rounded-md hover:bg-teal-600 hover:text-gray-100 bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
-            href="/register"
-          >
-            Register
-          </a>
-        </div>
-      </div>
+      <Login/>
+      
       <div className="block md:hidden">
         <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          <AiOutlineMenu />
         </button>
       </div>
     </>

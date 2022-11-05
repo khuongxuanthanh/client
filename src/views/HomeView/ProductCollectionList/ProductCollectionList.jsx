@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import ProductCollection from "./ProductCollection";
 import axios from "axios";
 
-const categories = ["featured", "sofas", "chairs"];
+const categories = ["Featured", "Sofas", "Chairs"];
 
 const ProductCollectionList = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/products")
-      .then((res) => setProducts(res.data))
+  axios
+      .get("http://localhost:3000/api/products")
+      .then((res) => {
+      setProducts(res.data.products);
+      })
       .catch((error) => console.log(error));
   }, []);
-
+ 
   return (
     <>
       {categories.map((category) => {

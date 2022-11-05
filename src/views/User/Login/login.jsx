@@ -1,22 +1,36 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  //     const LoginPages = () => {
-  //         const { userId } = useParams();
-  //         const [user, setUser] = useState({});
-  //         useEffect(() => {
-  //             axios
-  //               .get(`http://localhost:3000/api/users/${userId}`)
-  //               .then((res) => setUser(res.data.user))
-  //               .catch((error) => console.log(error));
-  //           }, [userId]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      navigate.push("/add");
+    }
+  }, []);
+  
+  async function login() {
+    console.warn(email, password);
+    let item = { email, password };
+    let result = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(item)
+    });
+    result = await result.json();
+    localStorage.setItem(JSON.stringify(result))
+    navigate.push("/add")
+  }
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg">
-        <form action className=" mb-0 space-y-4 rounded-lg p-8 shadow-2xl">
+        <form action="/" className=" mb-0 space-y-4 rounded-lg p-8 shadow-2xl">
           <h1 className="text-center text-2xl font-bold text-teal-600 sm:text-3xl">
             Pages Login
           </h1>
@@ -28,7 +42,7 @@ const Login = () => {
             <div className="relative mt-1">
               <input
                 type="email"
-                id="email"
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 placeholder="Enter email"
               />
@@ -57,7 +71,7 @@ const Login = () => {
             <div className="relative mt-1">
               <input
                 type="password"
-                id="password"
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 placeholder="Enter password"
               />
@@ -87,6 +101,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
+            onClick={login}
             className="block w-full rounded-lg bg-teal-600 px-5 py-3 text-sm font-medium text-white"
           >
             Sign in
