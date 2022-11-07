@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import logo_img from '../../assets/images/logo.png';
-import {
-  AiOutlineMenu,
-} from 'react-icons/ai';
+import logo_img from "../../assets/images/logo.png";
+import { AiOutlineMenu } from "react-icons/ai";
+import { useEffect } from "react";
 
 const headerLinks = [
   { path: "/", label: "Home" },
@@ -13,49 +12,88 @@ const headerLinks = [
   { path: "/add-product", label: "Add product" },
 ];
 
+// const[user, serUser] = useState('');
+// const Login = () => {
+//   return(
+//     <div className="sm:flex sm:gap-4">
+//       {user? (
+//         <div className="sm:flex sm:gap-4">
+//           <div className="hidden sm:flex">Hello: {user}</div>
+//           <button onClick={Logout}>Logout</button>
+//         </div>
+//       ) : (
+//         <div className="sm:flex sm:gap-4">
+//          <Link
+//           className="rounded-md border-teal-500 hover:bg-transparent hover:text-teal-500 bg-teal-500 px-5 py-2.5 text-sm font-medium text-white shadow"
+//           to="/login"
+//         >
+//           Login
+//         </Link>
+//         <div className="hidden sm:flex">
+//           <Link
+//             className="rounded-md hover:bg-teal-500 hover:text-gray-100 bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+//             to="/register"
+//           >
+//             Register
+//           </Link>
+//         </div>
+//       </div>
+//       )}
+//     </div>
+//   );
+// };
+
 const Logo = () => {
   return (
-    <Link className="block text-teal-400" to="/">
+    <Link className="block text-teal-500" to="/">
       <span className="sr-only">Home</span>
       <img className="h-16 w-48" src={logo_img} alt="Logo" />
     </Link>
   );
 };
 
-const Login = () => {
-  if(localStorage.getItem("accessToken"))
-    return(
-      <div className="sm:flex sm:gap-4">
+const NavLogin = () => {
+  return (
+    <div className="sm:flex sm:gap-4">
+      <Link
+        className="rounded-md border-teal-500 hover:bg-transparent hover:text-teal-500 bg-teal-500 px-5 py-2.5 text-sm font-medium text-white shadow"
+        to="/login"
+      >
+        Login
+      </Link>
+      <div className="hidden sm:flex">
         <Link
-          className="rounded-md border-teal-400 hover:bg-transparent hover:text-teal-400 bg-teal-400 px-5 py-2.5 text-sm font-medium text-white shadow"
-          to='/logout'
+          className="rounded-md hover:bg-teal-500 hover:text-gray-100 bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+          to="/register"
+        >
+          Register
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const Logout = () => {
+  localStorage.removeItem("result");
+  // navigate("/");
+};
+
+const result = JSON.parse(localStorage.getItem("result"));
+const Login = () => {
+  if (result === null) return <NavLogin />;
+  else if (result.success)
+    return (
+      <div className="sm:flex sm:gap-4">
+        <div className="hidden sm:flex">Hello: {result.user.name}</div>
+        <button
+          className="rounded-md border-teal-500 hover:bg-transparent hover:text-teal-500 bg-teal-500 px-5 py-2.5 text-sm font-medium text-white shadow"
+          onClick={Logout}
         >
           Logout
-        </Link>
-        <div className="hidden sm:flex">
-          Hello: {userName}
-        </div>
+        </button>
       </div>
-    )
-  else
-      return(
-        <div className="sm:flex sm:gap-4">
-        <Link
-          className="rounded-md border-teal-400 hover:bg-transparent hover:text-teal-400 bg-teal-400 px-5 py-2.5 text-sm font-medium text-white shadow"
-          to="/login"
-        >
-          Login
-        </Link>
-        <div className="hidden sm:flex">
-          <Link
-            className="rounded-md hover:bg-teal-400 hover:text-gray-100 bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
-            to="/register"
-          >
-            Register
-          </Link>
-        </div>
-        </div>
-      )
+    );
+  else return <NavLogin />;
 };
 
 const NavLinks = () => {
@@ -65,7 +103,7 @@ const NavLinks = () => {
         Header navigation
       </h2>
       <ul className="flex items-center gap-6 text-sm">
-        {headerLinks.map((item,index) => {
+        {headerLinks.map((item, index) => {
           return (
             <li key={index}>
               <Link
@@ -85,8 +123,7 @@ const NavLinks = () => {
 const AuthButtons = () => {
   return (
     <>
-      <Login/>
-      
+      <Login />
       <div className="block md:hidden">
         <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
           <AiOutlineMenu />
