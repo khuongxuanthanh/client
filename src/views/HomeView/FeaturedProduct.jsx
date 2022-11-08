@@ -1,13 +1,16 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { BsHeart, BsCart } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+// Icons
+import { BsHeart, BsCart } from "react-icons/bs";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
 
 const FeaturedProduct = () => {
   const [products, setProducts] = useState([]);

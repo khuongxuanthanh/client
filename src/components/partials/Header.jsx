@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import logo_img from "../../assets/images/logo.png";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const headerLinks = [
   { path: "/", label: "Home" },
@@ -11,37 +11,6 @@ const headerLinks = [
   { path: "/blogs", label: "Blogs" },
   { path: "/add-product", label: "Add product" },
 ];
-
-// const[user, serUser] = useState('');
-// const Login = () => {
-//   return(
-//     <div className="sm:flex sm:gap-4">
-//       {user? (
-//         <div className="sm:flex sm:gap-4">
-//           <div className="hidden sm:flex">Hello: {user}</div>
-//           <button onClick={Logout}>Logout</button>
-//         </div>
-//       ) : (
-//         <div className="sm:flex sm:gap-4">
-//          <Link
-//           className="rounded-md border-teal-500 hover:bg-transparent hover:text-teal-500 bg-teal-500 px-5 py-2.5 text-sm font-medium text-white shadow"
-//           to="/login"
-//         >
-//           Login
-//         </Link>
-//         <div className="hidden sm:flex">
-//           <Link
-//             className="rounded-md hover:bg-teal-500 hover:text-gray-100 bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
-//             to="/register"
-//           >
-//             Register
-//           </Link>
-//         </div>
-//       </div>
-//       )}
-//     </div>
-//   );
-// };
 
 const Logo = () => {
   return (
@@ -75,10 +44,12 @@ const NavLogin = () => {
 
 const Logout = () => {
   localStorage.removeItem("result");
-  // navigate("/");
 };
 
+let number = 0;
 const result = JSON.parse(localStorage.getItem("result"));
+// if (result && !result.success===null) number += 1; useEffect(() => {}, [number]);
+
 const Login = () => {
   if (result === null) return <NavLogin />;
   else if (result.success)

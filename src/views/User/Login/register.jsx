@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { GrFormClose } from "react-icons/gr";
 
 const register = () => {
   const [name, setName] = useState("");
@@ -10,40 +12,51 @@ const register = () => {
 
   async function register(e) {
     e.preventDefault();
-    const newUser = {
-      name: name,
-      email: email,
-      hashed_password: password,
-    };
-    let resultR = await fetch("http://localhost:3000/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(newUser),
-    });
-    resultR = await resultR.json();
-    sessionStorage.setItem("resultR", JSON.stringify(resultR));
-    navigate("/login");
+    if(name && email && password){
+      const newUser = {
+        name: name,
+        email: email,
+        hashed_password: password,
+      };
+      let resultR = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+      resultR = await resultR.json();
+      sessionStorage.setItem("resultR", JSON.stringify(resultR));
+      if (resultR && resultR.success) navigate("/login");
+    }
+    else{
+      document.getElementById("errMg").parentElement.innerHTML =
+        "<span> Error: Missing email and/or password!</span>";
+    }
   }
 
   const result = JSON.parse(sessionStorage.getItem("resultR"));
   const ErrMg = () => {
-    if (result)
-      if (!result.success)
-        return (
-          <>
-            <p className="text-center text-red-600" id="errMg">
-              Error: {result.message}
-            </p>
-          </>
-        );
+    if (result && !result.success)
+      return (
+        <>
+          <p className="text-center text-red-600" id="errMg">
+            Error: {result.message}
+          </p>
+        </>
+      );
   };
 
   return (
     <section className="bg-white flex">
-      <div className="mx-auto">
+      <div className="mx-auto relative">
+        <Link
+          to={"/"}
+          className="absolute top-4 right-6 p-3 hover:bg-teal-500 shadow-md rounded-md"
+        >
+          <GrFormClose />
+        </Link>
         <main
           aria-label="Main"
           className="px-8 py-8 max-w-lg sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 
@@ -52,7 +65,10 @@ const register = () => {
           <h1 className="text-center text-4xl text-teal-500 font-bold">
             Account Register
           </h1>
-          <ErrMg />
+          <p className="text-center text-red-600">
+            <span id="errMg"></span>
+            <ErrMg />
+          </p>
           <div className="max-w-xl lg:max-w-3xl">
             <form
               action="/login"
@@ -139,9 +155,9 @@ const register = () => {
                 </button>
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Already have an account?
-                  <a href="/login" className="text-gray-700 underline">
+                  <Link to="/login" className="text-gray-700 underline">
                     Log in
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>
