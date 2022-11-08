@@ -46,13 +46,11 @@ const Logout = () => {
   localStorage.removeItem("result");
 };
 
-let number = 0;
 const result = JSON.parse(localStorage.getItem("result"));
-// if (result && !result.success===null) number += 1; useEffect(() => {}, [number]);
 
 const Login = () => {
-  if (result === null) return <NavLogin />;
-  else if (result.success)
+  if (result === null || !result.success) return <NavLogin />;
+  else
     return (
       <div className="sm:flex sm:gap-4">
         <div className="hidden sm:flex">Hello: {result.user.name}</div>
@@ -64,7 +62,6 @@ const Login = () => {
         </button>
       </div>
     );
-  else return <NavLogin />;
 };
 
 const NavLinks = () => {

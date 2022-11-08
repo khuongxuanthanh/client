@@ -7,6 +7,7 @@ import { GrFormClose } from "react-icons/gr";
 const register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [errMg, setErrMg] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const register = () => {
         email: email,
         hashed_password: password,
       };
-      let resultR = await fetch("http://localhost:3000/api/register", {
+      const result = await fetch("http://localhost:3000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,27 +27,20 @@ const register = () => {
         },
         body: JSON.stringify(newUser),
       });
-      resultR = await resultR.json();
-      sessionStorage.setItem("resultR", JSON.stringify(resultR));
+      const resultR = await result.json();
+      sessionStorage.setItem("resultR", JSON.stringify(result));
+
       if (resultR && resultR.success) navigate("/login");
+      else {
+        setErrMg(resultR.message);
+        document.getElementById("errMg").innerText = (errMg);
+      }
     }
     else{
-      document.getElementById("errMg").parentElement.innerHTML =
-        "<span> Error: Missing email and/or password!</span>";
+      document.getElementById("errMg").innerHTML =
+        "Error: Missing email and/or password!";
     }
   }
-
-  const result = JSON.parse(sessionStorage.getItem("resultR"));
-  const ErrMg = () => {
-    if (result && !result.success)
-      return (
-        <>
-          <p className="text-center text-red-600" id="errMg">
-            Error: {result.message}
-          </p>
-        </>
-      );
-  };
 
   return (
     <section className="bg-white flex">
@@ -66,8 +60,7 @@ const register = () => {
             Account Register
           </h1>
           <p className="text-center text-red-600">
-            <span id="errMg"></span>
-            <ErrMg />
+            <span id="errMg">{errMg}</span>
           </p>
           <div className="max-w-xl lg:max-w-3xl">
             <form

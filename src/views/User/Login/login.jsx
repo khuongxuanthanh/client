@@ -9,14 +9,13 @@ import logoGit from "../../../assets/images/logo_github.png";
 import logoGo from "../../../assets/images/Google__G__Logo.png";
 
 const Login = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errMg, setErrMg] = useState("");
   let navigate = useNavigate();
 
   async function login(e) {
     e.preventDefault();
-    // console.warn(email, password);
     if (email && password) {
       const item = { email, password };
       const result = await fetch("http://localhost:3000/api/login", {
@@ -32,23 +31,17 @@ const Login = () => {
       localStorage.setItem("result", JSON.stringify(resultL));
 
       if (resultL && resultL.success) navigate("/");
+      else {
+        const result = JSON.parse(localStorage.getItem("result"));
+        setErrMg(result.message);
+        document.getElementById("errMg").innerText = (errMg);
+      }
       // useEffect(() => {}, []);
     } else {
-      document.getElementById("errMg").parentElement.innerHTML =
-        "<span> Error: Missing email and/or password!</span>";
+      document.getElementById("errMg").innerText = 
+        "Error: Missing email and/or password!";
     }
   }
-
-  const result = JSON.parse(localStorage.getItem("result"));
-  const ErrMg = () => {
-    if (result)
-      if (!result.success)
-        return (
-          <>
-            <span>Error: {result.message}</span>
-          </>
-        );
-  };
 
   const Logout = () => {
     localStorage.removeItem("result");
@@ -68,13 +61,13 @@ const Login = () => {
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-lg relative">
+      <div className="mx-auto max-w-sm relative">
         <Link
           to={"/"}
           className="absolute top-4 right-6 p-3 hover:bg-teal-500 shadow-md rounded-md"
         >
           <GrFormClose />
-          <Logout/>
+          <Logout />
         </Link>
         <form
           action="/"
@@ -83,13 +76,12 @@ const Login = () => {
           className=" mb-0 space-y-4 rounded-lg p-8 shadow-2xl"
         >
           <h1 className="text-center text-2xl font-bold text-teal-600 sm:text-3xl">
-            Pages Login
+            Login
           </h1>
           <p className="text-center text-red-600">
-            <span id="errMg"></span>
-            <ErrMg />
+
+            <span id="errMg">{errMg}</span>
           </p>
-          <p className="text-lg font-medium">Sign in to your account</p>
           <div>
             <label htmlFor="email" className="text-sm font-medium">
               Email
@@ -123,9 +115,8 @@ const Login = () => {
             </div>
           </div>
           <p className="text-center">or</p>
-          <div className="flex justify-between md:px-32 px-12">
+          <div className="flex justify-between px-10">
             <div className="hover:cursor-pointer" onClick={facebook}>
-
               <img className="h-8" src={logoFa} alt="" />
             </div>
             <div className="hover:cursor-pointer" onClick={google}>
