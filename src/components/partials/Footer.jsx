@@ -1,210 +1,106 @@
-import { Link } from "react-router-dom";
-import Logo from "../../assets/images/logo.png";
-import {
-  BsFacebook, BsDribbble, BsGithub,
-  BsTwitter, BsInstagram
-} from "react-icons/bs";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { BsFacebook, BsInstagram, BsLinkedin } from 'react-icons/bs'
+import QrCode from "../../assets/images/qr_code.png";
+import AppStor from "../../assets/images/app_store.png";
+import GooglePlay from "../../assets/images/google_play.png";
+import AppGallery from "../../assets/images/app_gallery.png";
 
-// Nav Links
-const NavLinks = () => {
-  return (
-    <ul className="space-y-2 gap-6 md:gap-8 lg:gap-12">
-      {footerLinks.map((item) => {
-        return (
-          <li key={item.path}>
-            <Link
-              className="text-gray-700 transition hover:text-gray-700/75"
-              to={item.path}
-            >
-              {item.label}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-//
-const ServiceLinks = () => {
-  return (
-    <ul className="space-y-2 gap-6 md:gap-8 lg:gap-12">
-      {serviceLinks.map((item) => {
-        return (
-          <li key={item.path}>
-            <Link
-              className="text-gray-700 transition hover:text-gray-700/75"
-              to={item.path}
-            >
-              {item.label}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-const MediaLinks = () => {
-  return (
-    <ul className="mt-12 flex justify-center gap-6 md:gap-8">
-      {footerMediaList.map((item) => {
-        return (
-          <li key={item.path}>
-            <Link
-              to={item.path}
-              rel="noreferrer"
-              target="_blank"
-              className="text-gray-700 transition hover:text-gray-700/75"
-            >
-              <span className="sr-only">{item.label}</span>
-              {item.icon}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-const HelpfulLinks = () => {
-  return (
-    <ul className="mt-12 flex justify-center gap-6 md:gap-8">
-      {helpfulLinks.map((item) => {
-        return (
-          <li key={item.path}>
-            <Link
-              to={item.path}
-              rel="noreferrer"
-              target="_blank"
-              className="text-gray-700 transition hover:text-gray-700/75"
-            >
-              <span className="sr-only">{item.label}</span>
-              {item.icon}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-const LegalLink = () => {
-  return (
-    <ul className="mt-12 flex justify-center gap-6 md:gap-8">
-      {Legal.map((item) => {
-        return (
-          <li key={item.path}>
-            <Link
-              to={item.path}
-              rel="noreferrer"
-              target="_blank"
-              className="text-gray-700 transition hover:text-gray-700/75"
-            >
-              <span className="sr-only">{item.label}</span>
-              {item.icon}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-// Footer links data
-const footerLinks = [
-  { path: "/", label: "Home" },
-  { path: "/products", label: "Products" },
-  { path: "/about", label: "About" },
-  { path: "/contact", label: "Contact" },
-  { path: "/blogs", label: "Blogs" },
-];
-
-// Footer links data
-const serviceLinks = [
-  { path: "/1on1-coaching", label: "1on1 Coaching" },
-  { path: "/ompany-review", label: "Company Review" },
-  { path: "/accounts-review", label: "Accounts Review" },
-  { path: "/HR-consulting", label: "HR Consulting" },
-  { path: "/SEO-optimisation", label: "SEO Optimisation" },
-];
-
-// Footer links data
-const helpfulLinks = [
-  { path: "/contact", label: "Contact" },
-  { path: "/faqs", label: "FAQs" },
-  { path: "/live-chat", label: "Live Chat" }
-];
-
-// Legal links pages
-const Legal = [
-  { path: "/privacy-policy", label: "Privacy Policy" },
-  { path: "/terms-conditions", label: "Terms Conditions" },
-  { path: "/returns-policy", label: "Returns Policy" },
-  { path: "/accessibility", label: "Accessibility" },
-];
-
-const footerMediaList = [
-  { path: "/facebook", icon: <BsFacebook />, label: "Facebook" },
-  { path: "/instagram", icon: <BsInstagram />, label: "Instagram" },
-  { path: "/twitter", icon: <BsTwitter />, label: "Twitter" },
-  { path: "/github", icon: <BsGithub />, label: "Github" },
-  { path: "/dribbble", icon: <BsDribbble />, label: "Dribbble" }
-];
-
-// Main Footer
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" className="bg-gray-50">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          <div>
-            <Link to="/">
-              <img className="block h-20 w-64" src={Logo} alt="Logo" />
-            </Link>
-            <p className="mt-4 max-w-xs text-sm text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-              accusantium.
-            </p>
-            <div className="mt-8 flex gap-6 text-gray-500">
-              {/* Footer Media */}
-              <MediaLinks />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
-            <div>
-              <p className="font-medium">Company</p>
-              <nav
-                aria-label="Footer Nav"
-                className="mt-4 space-y-2 text-sm text-gray-500"
-              >
-                <NavLinks />
-              </nav>
-            </div>
-            <div>
-              <p className="font-medium">Services</p>
-              <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-                <ServiceLinks />
-              </nav>
-            </div>
-            <div>
-              <p className="font-medium">Helpful Links</p>
-              <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-                <HelpfulLinks />
-              </nav>
-            </div>
-            <div>
-              <p className="font-medium">Legal</p>
-              <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-                <LegalLink />
-              </nav>
-            </div>
-          </div>
+    <div className="footer">
+    <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 px-4 md:px-8">
+        <div className="col-span-2">
+            <h3 className="footer__heading mt-4 mb-2">Chăm sóc khách hàng</h3>
+            <ul className="footer-list">
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Trung tâm trợ giúp</Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">F8-Shop Mall</Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Hướng dẫn mua hàng</Link>
+                </li>
+            </ul>
         </div>
-        <p className="mt-8 text-xs text-gray-500">© 2022 Company Name</p>
-      </div>
-    </footer>
-  );
-};
+        <div className="col-span-2">
+            <h3 className="footer__heading mt-4 mb-2">Giới Thiệu</h3>
+            <ul className="footer-list">
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Giới thiệu</Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Tuyển dụng</Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Điều khoản</Link>
+                </li>
+            </ul>
+        </div>
+        <div className="col-span-2">
+            <h3 className="footer__heading mt-4 mb-2">Danh Mục</h3>
+            <ul className="footer-list">
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Trang điểm mặt</Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Trang điểm môi</Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">Trang điểm mắt</Link>
+                </li>
+            </ul>
+        </div>
+        <div className="col-span-2">
+            <h3 className="footer__heading mt-4 mb-2">Theo dõi</h3>
+            <ul className="footer-list">
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">
+                        <BsFacebook />
+                        Facebook
+                    </Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">
+                        <BsInstagram />
+                        Instagram
+                    </Link>
+                </li>
+                <li className="footer-item">
+                    <Link to="#" className="footer-item__link">
+                        <BsLinkedin />
+                        Linkedin
+                    </Link>
+                </li>
+            </ul>
+        </div>
+        <div className="col-span-2">
+            <h3 className="footer__heading mt-4 mb-2">Vào cửa hàng trên ứng dụng</h3>
+            <div className="flex pt-2">
+                <img src={QrCode} alt="QR code" className="footer__qr-img" />
+                <div className="px-2.5 grid grid-rows-3">
+                    <Link to="#" className="header__qr-link">
+                        <img src={AppStor} alt="App store" className="h-4" />
+                    </Link>
+                    <Link to="#" className="header__qr-link">
+                        <img src={GooglePlay} alt="Google play" className="h-4" />
+                    </Link>
+                    <Link to="#" className="header__qr-link">
+                        <img src={AppGallery} alt="App gallery" className="h-4" />
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div className="footer__bottom">
+        <div className="grid">
+            <p className="footer__text">© 2022 - Bản quyền thuộc về Công ty TNHH Shopee</p>
+        </div>
+    </div>
+</div>
 
-export default Footer;
+  )
+}
+
+export default Footer

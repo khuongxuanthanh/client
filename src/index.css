@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
 @layer components {
   .no-spinner {
     -moz-appearance: textfield;
@@ -12,7 +17,19 @@
     margin: 0;
     -webkit-appearance: none;
   }
+
+  .bg_primary {
+    @apply bg-primary
+    text-white
+  }
+  .text_primary {
+    @apply text-primary
+  }
+  .border_primary {
+    @apply border-primary
+  }
 }
+
 
 .bg-register {
   background-image: url(./assets/images/AD0521_OSULLIVAN_1.jpg);

@@ -27,18 +27,19 @@ const Login = () => {
         body: JSON.stringify(item),
       });
 
-      const resultL = await result.json();
-      localStorage.setItem("result", JSON.stringify(resultL));
+      const loginOk = await result.json();
+      localStorage.setItem("loginOk", JSON.stringify(loginOk));
 
-      if (resultL && resultL.success) navigate("/");
+      if (loginOk && loginOk.user.role == 1) navigate("/admin");
+      else if (loginOk && loginOk.success) navigate("/");
       else {
-        const result = JSON.parse(localStorage.getItem("result"));
+        const result = JSON.parse(localStorage.getItem("loginOk"));
         setErrMg(result.message);
-        document.getElementById("errMg").innerText = (errMg);
+        document.getElementById("errMg").innerText = errMg;
       }
       // useEffect(() => {}, []);
     } else {
-      document.getElementById("errMg").innerText = 
+      document.getElementById("errMg").innerText =
         "Error: Missing email and/or password!";
     }
   }
@@ -79,7 +80,6 @@ const Login = () => {
             Login
           </h1>
           <p className="text-center text-red-600">
-
             <span id="errMg">{errMg}</span>
           </p>
           <div>
@@ -90,7 +90,7 @@ const Login = () => {
               <input
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                className="w-full rounded-lg border-gray-200 pr-12 text-sm shadow-sm"
                 placeholder="Enter email"
               />
               <span className="absolute inset-y-0 right-4 inline-flex items-center">
@@ -106,7 +106,7 @@ const Login = () => {
               <input
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                className="w-full rounded-lg border-gray-200 pr-12 text-sm shadow-sm"
                 placeholder="Enter password"
               />
               <span className="absolute inset-y-0 right-4 inline-flex items-center">

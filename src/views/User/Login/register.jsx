@@ -44,7 +44,7 @@ const register = () => {
 
   return (
     <section className="bg-white flex">
-      <div className="mx-auto relative">
+      <div className="mx-auto relative my-10">
         <Link
           to={"/"}
           className="absolute top-4 right-6 p-3 hover:bg-teal-500 shadow-md rounded-md"
@@ -53,7 +53,7 @@ const register = () => {
         </Link>
         <main
           aria-label="Main"
-          className="px-8 py-8 max-w-lg sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 
+          className="px-4 py-8 max-w-lg lg:col-span-7
                 xl:col-span-6 border rounded-2xl"
         >
           <h1 className="text-center text-4xl text-teal-500 font-bold">
@@ -112,20 +112,6 @@ const register = () => {
                 />
               </div>
               <div className="col-span-6 text-center">
-                <label htmlFor="MarketingAccept" className="flex gap-4">
-                  <input
-                    type="checkbox"
-                    id="MarketingAccept"
-                    name="marketing_accept"
-                    className="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
-                  />
-                  <span className="text-sm text-gray-700">
-                    I want to receive emails about events, product updates and
-                    company announcements.
-                  </span>
-                </label>
-              </div>
-              <div className="col-span-6 text-center">
                 <p className="text-sm text-gray-500">
                   By creating an account, you agree to our
                   <a href="#" className="text-gray-700 underline">
@@ -138,12 +124,9 @@ const register = () => {
                   .
                 </p>
               </div>
-              <div className="col-span-6 sm:items-center sm:gap-4 mx-auto">
+              <div className="col-span-6 sm:items-center sm:gap-4 text-center">
                 <button
-                  className="inline-block shrink-0 rounded-md border border-teal-500
-                    bg-teal-500 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent
-                    hover:text-teal-500 focus:outline-none focus:ring active:text-teal-500"
-                >
+                  className="btn bg-orange-500 text-white hover:text-orange-500 flex ">
                   Create an account
                 </button>
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">

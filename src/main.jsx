@@ -5,11 +5,13 @@ import { Navigate } from "react-router-dom";
 
 // Views
 import HomeView from "./views/HomeView";
-import ProductDetailView from "./views/User/ProductDetailView";
-import ProductsView from "./views/User/ProductsView";
+// import ProductDetailView from "./views/User/ProductDetailView";
+import Product from "./views/User/ProductsView/product";
 import AddProduct from "./views/Admin/Products/addProduct";
 import Login from "./views/User/Login/login";
 import Register from "./views/User/Login/register";
+import PageAdmin from "./views/Admin/PageAdmin";
+// import Cart from "./views/User/Cart/index";
 
 // Faqs
 import Faqs from "./views/User/Faqs/Faqs";
@@ -28,16 +30,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorView />,
     children: [
       {
+        path: "/admin",
+        element: <PageAdmin />,
+      },
+      {
         path: "/",
         element: <HomeView />,
       },
       {
         path: "/products",
-        element: <ProductsView />,
+        element: <Product />,
       },
       {
-        path: "/products/:productId",
-        element: <ProductDetailView />,
+        // path: "/products/:productId",
+        // element: <ProductDetailView />,
       },
 
       {
@@ -58,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/faqs",
         element: <Faqs />,
+      },
+      {
+        // path: "/cart",
+        // element: <Cart />,
       },
     ],
   },
