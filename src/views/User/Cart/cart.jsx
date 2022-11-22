@@ -1,32 +1,23 @@
-// import React, { Compoment } from "react";
-// // import { useState } from "react";
+import React, { useState } from "react";
+import ProductDetail from "../ProductsView/productDetail";
 
-// export const CartContext = React.createContext();
+function cart() {
+  const [carts, setCart] = useState([]);
+  const addToCart = (data) => {
+    setCart([...carts, data])
+  }
+  <ProductDetail addToCart={addToCart}/>
+  return (
+    <div>
+      {cart.map((cart, index) => {
+        return (
+          <div>
+            <img src={cart.thumbnail} alt="" />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
-// export class CartProvider extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       cartItems: [],
-//     };
-
-//     this.addToCart = this.addToCart.bind(this);
-//   }
-
-//   addToCart(product) {
-//     this.setState({
-//       cartItems: this.state.cartItems.concat(product),
-//     });
-//   }
-
-//   render() {
-//     return (
-//       <CartContext.Provider
-//         value={{ cartItems: this.state.cartItems, addToCart: this.addToCart }}
-//       >
-//         {this.props.children}
-//       </CartContext.Provider>
-//     );
-//   }
-// }
+export default cart;

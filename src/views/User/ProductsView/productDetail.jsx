@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-// import request from "../../../../utils/request";
 
-// import { CartContext } from "../Cart/cart";
-import { GoPlus } from "react-icons/go";
-import { FaMinus } from "react-icons/fa";
-// import index from "../Cart";
+import { BsCartPlusFill } from "react-icons/bs";
 
 const SolidStar = () => {
   return (
@@ -44,16 +40,6 @@ const Rating = ({ rating = 4 }) => {
   );
 };
 
-// const [count, setCount] = useState();
-// const clickUp = document.getElementById("numberUp");
-
-// const NumberUp = () => {
-//   const numQty = document.getElementById("quantity");
-//   clickUp.addEventListener("click", () => {
-//     numQty = numQty + 1;
-//   });
-// };
-
 const ThumbImg = () => {
   return (
     <div className="-ml-0.5 flex">
@@ -70,8 +56,8 @@ const ThumbImg = () => {
   );
 };
 
-const ProductDetailView = (handleClick) => {
-  const { productId } = useParams();
+const ProductDetail = ({id, addToCart}) => {
+  const { productId } = useParams(id);
   const [product, setProduct] = useState({});
   useEffect(() => {
     axios
@@ -80,9 +66,16 @@ const ProductDetailView = (handleClick) => {
       .catch((error) => console.log(error));
   }, [productId]);
 
-  // let imgAll = [product.thumball];
-  // imgAll = imgAll[0];
-  // console.log(imgAll)
+  // const [cart, setCart] = useState([]);
+  // cartList = cart;
+  // localStorage.setItem("cartList", JSON.stringify(cartList));
+
+  // console.log(cartList)
+  // const addToCart = (data) => {
+  //   setCart([...cart, data]);
+
+  // };
+
   return (
     <section>
       <div className="relative mx-auto max-w-screen-xl px-8 py-8">
@@ -143,7 +136,7 @@ const ProductDetailView = (handleClick) => {
                 </p>
               </div>
             </details>
-            <form className="mt-8">
+            <div className="mt-8">
               <fieldset>
                 <legend className="mb-1 text-sm font-medium">Color</legend>
                 <div className="flow-root">
@@ -169,41 +162,24 @@ const ProductDetailView = (handleClick) => {
                   <label htmlFor="quantity" className="sr-only">
                     Qty
                   </label>
-                  <button
-                    // onClick={NumberDow}
-                    className="rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500"
-                  >
-                    <FaMinus />
-                  </button>
                   <input
                     type="number"
                     id="quantity"
                     // onChange={(e) => setCount(e.target.value)}
                     min={1}
                     defaultValue={1}
-                    className="w-12 mx-3 rounded border-gray-200 py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+                    className="w-20 mx-3 rounded text-lg"
                   />
-                  <button
-                    id="numberUp"
-                    // onClick={NumberUp}
-                    className="rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500"
-                  >
-                    <GoPlus />
-                  </button>
                 </div>
-                <CartContext.Consumer>
-                  {({ addToCart }) => (
-                    <button
-                      type="submit"
-                      onClick={() => addToCart(product)}
-                      className="ml-3 block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500"
-                    >
-                      Add to Cart
-                    </button>
-                  )}
-                </CartContext.Consumer>
+                <button
+                  // type="submit"
+                  onClick={() => addToCart(product)}
+                  className="btn btn_primary text-2xl"
+                >
+                  <BsCartPlusFill />
+                </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -211,4 +187,4 @@ const ProductDetailView = (handleClick) => {
   );
 };
 
-export default ProductDetailView;
+export default ProductDetail;

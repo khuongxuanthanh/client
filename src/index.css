@@ -22,6 +22,19 @@ html {
     @apply bg-primary
     text-white
   }
+
+  .btn_primary {
+    @apply bg-primary
+    text-white
+  }
+  
+  .btn_primary:hover {
+    @apply text-primary
+    border
+    border-primary
+    
+  }
+
   .text_primary {
     @apply text-primary
   }

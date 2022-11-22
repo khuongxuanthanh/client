@@ -2,16 +2,17 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { useState } from "react";
 
 // Views
 import HomeView from "./views/HomeView";
-// import ProductDetailView from "./views/User/ProductDetailView";
+import ProductDetail from "./views/User/ProductsView/productDetail";
 import Product from "./views/User/ProductsView/product";
 import AddProduct from "./views/Admin/Products/addProduct";
 import Login from "./views/User/Login/login";
 import Register from "./views/User/Login/register";
 import PageAdmin from "./views/Admin/PageAdmin";
-// import Cart from "./views/User/Cart/index";
+import Cart from "./views/User/Cart/cart";
 
 // Faqs
 import Faqs from "./views/User/Faqs/Faqs";
@@ -22,6 +23,11 @@ import BaseLayout from "./layouts/BaseLayout";
 import ErrorView from "./views/ErrorView";
 
 const user = JSON.parse(localStorage.getItem("result"));
+
+// const [cart, setCart] = useState([]);
+// const addToCart = (data) => {
+//   setCart([...cart, data])
+// }
 
 const router = createBrowserRouter([
   {
@@ -42,17 +48,17 @@ const router = createBrowserRouter([
         element: <Product />,
       },
       {
-        // path: "/products/:productId",
-        // element: <ProductDetailView />,
+        path: "/products/:productId",
+        element: <ProductDetail />,
       },
 
       {
         path: "/login",
-        element: user && user.success ? <Navigate to="/" /> : <Login /> ,
+        element: user && user.success ? <Navigate to="/" /> : <Login />,
       },
       {
         path: "/register",
-        element: user && user.success ? <Navigate to="/" /> : <Register /> ,
+        element: user && user.success ? <Navigate to="/" /> : <Register />,
       },
 
       {
@@ -66,8 +72,8 @@ const router = createBrowserRouter([
         element: <Faqs />,
       },
       {
-        // path: "/cart",
-        // element: <Cart />,
+        path: "/cartList",
+        element: <Cart />,
       },
     ],
   },

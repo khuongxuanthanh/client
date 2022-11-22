@@ -2,7 +2,7 @@ import React from 'react'
 
 function PageAdmin() {
   return (
-    <div>PageAdmin</div>
+    <div>page admin</div>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import NoCart from "../../../assets/images/no-cart.png";
 
 const HeaderCart = () => {
@@ -50,9 +51,9 @@ const HeaderCart = () => {
               </div>
             </li>
           </ul>
-          <button className="btn text_primary hover:bg_primary border_primary">
+          <Link to="/cartList" className="btn text_primary hover:bg_primary border_primary">
             Xem giỏ hàng
-          </button>
+          </Link>
         </div>
       </div>
     </div>

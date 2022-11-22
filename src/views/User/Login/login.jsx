@@ -14,7 +14,7 @@ const Login = () => {
   const [errMg, setErrMg] = useState("");
   let navigate = useNavigate();
 
-  async function login(e) {
+  const login = async (e) => {
     e.preventDefault();
     if (email && password) {
       const item = { email, password };

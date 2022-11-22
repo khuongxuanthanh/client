@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Banner from "./Banner";
-import Products from "./products";
-import ProductCollectionList from "./ProductCollectionList/ProductCollectionList";
+import FeaturedProduct from "./FeaturedProduct";
+import NewProduct from "./NewProduct";
 
 const HomeView = () => {
   return (
@@ -10,8 +10,9 @@ const HomeView = () => {
       <Banner />
       <hr />
       {/* Products */}
-      <Products />
-      <ProductCollectionList />
+      <FeaturedProduct />
+      
+      <NewProduct />
     </>
   );
 };
